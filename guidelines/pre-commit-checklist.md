@@ -16,6 +16,16 @@
 - Update troubleshooting section if addressing known issues
 - Check if project CLAUDE.md needs updating with new development patterns, conventions, or project-specific guidelines
 
+## Memory Consistency and Alignment
+
+- Verify changes align with project-specific patterns documented in project CLAUDE.md
+- Check that new code follows established architectural decisions and design principles
+- Ensure naming conventions match project memory and domain language
+- Validate that changes don't contradict established user preferences or workflow patterns
+- Review staged changes against user-level development guidelines (~/.claude/CLAUDE.md)
+- Confirm new features follow established testing approaches and framework choices
+- Check that changes respect established code organization and file structure patterns
+
 ## API and Interface Changes
 
 - Verify backward compatibility or document breaking changes

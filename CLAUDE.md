@@ -14,6 +14,7 @@ This file organizes my personal development guidelines and best practices that a
 @~/.claude/guidelines/functional-programming-style.md
 @~/.claude/guidelines/file-sectioning.md
 @~/.claude/guidelines/jsx-preferences.md
+@~/.claude/guidelines/testing-best-practices.md
 
 ## Additional Personal Preferences
 

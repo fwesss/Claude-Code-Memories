@@ -19,6 +19,15 @@ Please review the following pre-commit checklist items that apply to the current
 - Update architecture diagrams if needed
 - Add migration notes for breaking changes
 
+### Memory Consistency
+
+- Changes align with project CLAUDE.md patterns
+- Code follows established architectural decisions
+- Naming matches project domain language
+- No conflicts with user preferences (~/.claude/CLAUDE.md)
+- Testing approach matches established patterns
+- File organization respects project structure
+
 ### Type Safety & Testing
 
 - Verify discriminated unions are exhaustive
