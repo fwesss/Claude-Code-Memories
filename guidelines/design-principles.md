@@ -1,46 +1,78 @@
-# Making Bugs Impossible - Design Principles
+# Embedded Design Principle (from pathsensitive.com)
 
-## Core Principle: Embedded Design
+## Core Principle
 
-Code should make the design of the program apparent. Represent key design concepts directly in code rather than scattering them across multiple places.
+Always code in a way that makes the design apparent. The structure of your code should reflect the conceptual design of your program.
 
-## Key Techniques
+## Key Guidelines
 
-### 1. Create Explicit Types for Core Concepts
+### 1. Represent Design Concepts as First-Class Code Constructs
 
-- Identify the fundamental concepts in your design
-- Create classes/types that directly represent these concepts
-- Example: Instead of scattered dashboard stat logic, create a `DashboardStat` class
+- If you have a concept in your design (e.g., "dashboard stat"), create an explicit type/class for it
+- Don't let design concepts exist only implicitly through repeated code patterns
+- Example: Instead of repeating caching logic for each stat, create a `DashboardStat` type that encapsulates the concept
 
-### 2. Consolidate Repeated Logic
+### 2. One Line of Code Per Low-Level Concept
 
-- Look for patterns of repeated code
-- Extract shared behavior into single, clear implementations
-- Centralize caching, computation, and display logic
+- Each design concept should map to ideally one place in the code
+- Avoid having multiple independent "knobs" for what should be a single concept
+- This prevents bugs where parts of a concept can be changed independently
 
-### 3. Make Design Assumptions Explicit
+### 3. The True DRY Principle
 
-- Dependencies and relationships should be obvious in the code structure
-- Reduce "knobs" - the number of independent configuration points
-- Prefer fewer, more intentional configuration options
+- Don't just avoid repeating code - avoid repeating the expression of concepts
+- If you find yourself implementing the same design pattern multiple times, abstract it
+- Example: If multiple items share caching behavior, the caching should be implemented once
 
-### 4. Ask the Right Questions
+### 4. Make Design Decisions Explicit
 
-When reviewing or writing code:
+- Wrap conceptual decisions in code structures (even if they're currently no-ops)
+- Example: Wrap translatable strings in an i18n function, even if it's just identity for now
+- This marks design decisions and makes future changes easier
 
-- "What are the core concepts in this program?"
-- "Does the code structure reflect the design?"
-- "Are there scattered pieces of logic that represent a single concept?"
+### 5. Think Beyond Level 2 (What Code Does)
+
+- Level 1: The code itself
+- Level 2: What the code does (behavior)
+- Level 3: The design - concepts and their relationships
+- Good refactoring comes from thinking at Level 3
+
+## Warning Signs of Design Principle Violations
+
+- Multiple places where the same conceptual change would need to be made
+- Code that's "indistinguishable from an alternate design"
+- Ability to partially modify what should be atomic operations
+- Repeated patterns that represent the same concept
 
 ## Practical Application
 
-1. Look beyond immediate functionality
-2. Design code to reflect the underlying conceptual structure
-3. Consolidate related behaviors into cohesive units
-4. Make it hard to introduce inconsistencies by design
+When reviewing or writing code:
 
-## Key Insight
+1. Identify the concepts in your design
+2. Check if each concept is represented explicitly in code
+3. Look for repeated patterns that might indicate hidden concepts
+4. Consider whether future changes would require modifying multiple places
 
-"Finding a good structure for the code was easy once we saw the structure of the design."
+## Example Transformation
 
-The goal is to make certain categories of bugs impossible by ensuring the code structure naturally enforces correct behavior.
+```java
+// Bad: Design concepts spread across multiple lines
+if (shouldRefresh()) {
+    users = countUsers();
+    updateCache();
+    print("Users: " + users);
+}
+// ... repeated for each stat
+
+// Good: Design concept as first-class construct
+class DashboardStat {
+    computation; label;
+}
+dashboard.getCurrentValues().forEach(stat -> print(stat));
+```
+
+## Remember
+
+- "Forms" (higher-level concepts) should be buildable directly in code
+- Abstract early rather than late when unsure
+- A good structure makes certain bugs impossible

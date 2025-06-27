@@ -4,17 +4,17 @@ This file organizes my personal development guidelines and best practices that a
 
 ## Core Guidelines
 
-@~/.claude/guidelines/design-principles.md
-@~/.claude/guidelines/naming-antipatterns.md
-@~/.claude/guidelines/pr-creation.md
-@~/.claude/guidelines/commit-conventions.md
-@~/.claude/guidelines/pre-commit-checklist.md
-@~/.claude/guidelines/react-structure.md
-@~/.claude/guidelines/domain-driven-types.md
-@~/.claude/guidelines/functional-programming-style.md
-@~/.claude/guidelines/file-sectioning.md
-@~/.claude/guidelines/jsx-preferences.md
-@~/.claude/guidelines/testing-best-practices.md
+@/Users/wesfeller/.claude/guidelines/design-principles.md
+@/Users/wesfeller/.claude/guidelines/naming-antipatterns.md
+@/Users/wesfeller/.claude/guidelines/pr-creation.md
+@/Users/wesfeller/.claude/guidelines/commit-conventions.md
+@/Users/wesfeller/.claude/guidelines/pre-commit-checklist.md
+@/Users/wesfeller/.claude/guidelines/react-structure.md
+@/Users/wesfeller/.claude/guidelines/domain-driven-types.md
+@/Users/wesfeller/.claude/guidelines/functional-programming-style.md
+@/Users/wesfeller/.claude/guidelines/file-sectioning.md
+@/Users/wesfeller/.claude/guidelines/jsx-preferences.md
+@/Users/wesfeller/.claude/guidelines/testing-best-practices.md
 
 ## Additional Personal Preferences
 
@@ -25,6 +25,7 @@ This file organizes my personal development guidelines and best practices that a
 - Extract complex conditions into well-named boolean variables
 - Avoid barrel imports (index.ts re-exports) - import directly from source files
 - Use specific imports rather than wildcard imports
+- Always use `.at()` method instead of bracket notation for JavaScript array access (e.g., `arr.at(0)` instead of `arr[0]`, `arr.at(-1)` instead of `arr[arr.length - 1]`)
 
 ### Development Workflow
 
